@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avaliador de Plotter Liigo</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; }
+    h1 { color: #0057b7; }
+    label { display: block; margin-top: 20px; font-weight: bold; }
+    select, input[type=radio] { margin-top: 5px; }
+    .resultado { margin-top: 30px; padding: 20px; background: #f0f0f0; border: 1px solid #ccc; }
+    button { margin-top: 20px; padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Avaliador de Plotter - Liigo</h1>
+
+  <form id="formAvaliacao">
+    <label>Ano da Plotter:
+      <select name="anoPlotter">
+        <option value="10">Até 3 anos</option>
+        <option value="5">Acima de 3 anos</option>
+      </select>
+    </label>
+
+    <label>Cabeça de Impressão:
+      <select name="cabecaImpressao">
+        <option value="10">Trocada até 1 ano e meio</option>
+        <option value="8">Nunca trocada</option>
+      </select>
+    </label>
+
+    <label>Última manutenção preventiva:
+      <select name="manutencaoPreventiva">
+        <option value="0">Nunca fez</option>
+        <option value="10">Últimos 4 meses</option>
+        <option value="5">Mais de 1 ano</option>
+      </select>
+    </label>
+
+    <label>Estado da cabeça de impressão:
+      <select name="estadoCabeca">
+        <option value="5">Dentro da vida útil</option>
+        <option value="10">Abaixo da vida útil</option>
+        <option value="0">Acima da vida útil</option>
+      </select>
+    </label>
+
+    <label>Motor scan:
+      <select name="motorScan">
+        <option value="8">Dentro da vida útil</option>
+        <option value="0">Acima da vida útil</option>
+      </select>
+    </label>
+
+    <label>Cabeça está falhando:
+      <select name="falhaCabeca">
+        <option value="0">Sim</option>
+        <option value="8">Não</option>
+      </select>
+    </label>
+
+    <label>Bomba de sucção:
+      <select name="bomba">
+        <option value="10">Abaixo da vida útil</option>
+        <option value="2">Acima da vida útil</option>
+      </select>
+    </label>
+
+    <label>Tem todos os roletes:
+      <select name="roletes">
+        <option value="10">Sim</option>
+        <option value="5">Não</option>
+        <option value="0">Faltam todos os roletes</option>
+      </select>
+    </label>
+
+    <label>Peças quebradas ou faltando:
+      <select name="pecas">
+        <option value="3">Sim</option>
+        <option value="10">Não</option>
+      </select>
+    </label>
+
+    <label>Visualmente:
+      <select name="visual">
+        <option value="10">Original</option>
+        <option value="5">Envelopada</option>
+        <option value="0">Precisa pintar</option>
+      </select>
+    </label>
+
+    <label>Tampa quebrada ou faltando:
+      <select name="tampa">
+        <option value="2">Sim</option>
+        <option value="10">Não</option>
+      </select>
+    </label>
+
+    <label>Está em região praiana?
+      <select name="praiana">
+        <option value="3">Sim</option>
+        <option value="10">Não</option>
+      </select>
+    </label>
+
+    <label>Bulk de tinta:
+      <select name="bulk">
+        <option value="10">Original</option>
+        <option value="5">Paralelo</option>
+      </select>
+    </label>
+
+    <label>Tinta utilizada:
+      <select name="tinta">
+        <option value="10">Original</option>
+        <option value="5">Paralela</option>
+      </select>
+    </label>
+
+    <button type="button" onclick="calcularPontuacao()">Calcular preço sugerido</button>
+  </form>
+
+  <div class="resultado" id="resultado"></div>
+
+  <script>
+    function calcularPontuacao() {
+      const form = document.forms["formAvaliacao"];
+      let total = 0;
+      for (let field of form.elements) {
+        if (field.type === "select-one") {
+          total += parseInt(field.value);
+        }
+      }
+
+      let precoBase = 60000;
+      let precoFinal;
+
+      if (total >= 90) precoFinal = precoBase;
+      else if (total >= 80) precoFinal = precoBase * 0.95;
+      else if (total >= 70) precoFinal = precoBase * 0.90;
+      else if (total >= 60) precoFinal = precoBase * 0.85;
+      else if (total >= 50) precoFinal = precoBase * 0.80;
+      else if (total >= 40) precoFinal = precoBase * 0.70;
+      else precoFinal = precoBase * 0.60;
+
+      document.getElementById("resultado").innerHTML =
+        `<strong>Pontuação total:</strong> ${total} de 130<br><strong>Preço sugerido:</strong> R$ ${precoFinal.toFixed(2).replace('.', ',')}`;
+    }
+  </script>
+</body>
+</html>
