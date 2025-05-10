@@ -3,128 +3,206 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Tabela Técnica de Avaliação - Liigo</title>
+    <title>Avaliador de Plotter - Liigo</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f8f9fa; }
-        h2 { background-color: #007bff; color: white; padding: 10px; border-radius: 5px; }
-        table { width: 100%; border-collapse: collapse; margin-bottom: 40px; background-color: white; }
-        th, td { border: 1px solid #dee2e6; padding: 10px; text-align: left; }
-        th { background-color: #e9ecef; }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #0057b7;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 15px;
+            display: block;
+        }
+        select, input[type=radio] {
+            margin-top: 5px;
+            width: 100%;
+            padding: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .resultado {
+            margin-top: 30px;
+            background: #f0f0f0;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
     </style>
 </head>
 <body>
-    <h2>1. Cabeças de Impressão</h2>
-    <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>Modelo da Cabeça</th>
-      <th>Valor Médio (R$)</th>
-      <th>Fator de Peso</th>
-      <th>Pontuação Técnica (1-10)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>DX4</td>
-      <td>5800</td>
-      <td>1.0</td>
-      <td>1 a 10</td>
-    </tr>
-    <tr>
-      <td>XP600</td>
-      <td>3000</td>
-      <td>0.8</td>
-      <td>1 a 10</td>
-    </tr>
-    <tr>
-      <td>DX5</td>
-      <td>9000</td>
-      <td>1.2</td>
-      <td>1 a 10</td>
-    </tr>
-    <tr>
-      <td>DX7</td>
-      <td>15000</td>
-      <td>1.5</td>
-      <td>1 a 10</td>
-    </tr>
-    <tr>
-      <td>Ricoh Gen5</td>
-      <td>20000</td>
-      <td>1.8</td>
-      <td>1 a 10</td>
-    </tr>
-  </tbody>
-</table>
+    <h1>Avaliador de Plotter - Liigo</h1>
+
+    <form id="avaliadorForm">
+        <label>Modelo da Plotter:</label>
+        <select id="modeloPlotter">
+            <option value="RF-640">Roland RF-640</option>
+            <option value="RS-640">Roland RS-640</option>
+            <option value="JV150-160">Mimaki JV150-160</option>
+        </select>
+
+        <label>Ano da Plotter:</label>
+        <select id="anoPlotter">
+            <option value="Até 3 anos">Até 3 anos</option>
+<option value="2022">2022</option>
+<option value="2021">2021</option>
+<option value="2020">2020</option>
+<option value="2019">2019</option>
+<option value="2018">2018</option>
+<option value="2017">2017</option>
+<option value="2016">2016</option>
+<option value="2015">2015</option>
+<option value="2014">2014</option>
+<option value="2013">2013</option>
+<option value="2012">2012</option>
+<option value="2011">2011</option>
+<option value="2010">2010</option>
+        </select>
+
+        <label>Estado da cabeça de impressão:</label>
+        <select id="estadoCabeca">
+            <option value="10">Nova</option>
+            <option value="7">Meia vida</option>
+            <option value="4">Final da vida</option>
+            <option value="1">Queimada</option>
+        </select>
+
+        <label>Última manutenção preventiva:</label>
+        <select id="manutencao">
+            <option value="0">Nunca fez</option>
+            <option value="2">Há mais de 2 anos</option>
+            <option value="5">Menos de 2 anos</option>
+        </select>
+
+        
+        <label>Motor Scan:</label>
+        <select id="motorScan">
+            <option value="5">Dentro da vida útil</option>
+            <option value="2">Já apresenta desgaste</option>
+            <option value="0">Já passou da vida útil</option>
+        </select>
+
+        <label>Cabeça está falhando?</label>
+        <select id="cabecaFalhando">
+            <option value="0">Sim</option>
+            <option value="3">Não</option>
+        </select>
+
+        <label>Bomba de sucção:</label>
+        <select id="bomba">
+            <option value="5">Boa</option>
+            <option value="3">Abaixo da vida útil</option>
+            <option value="1">Ruim</option>
+        </select>
+
+        <label>Tem todos os roletes?</label>
+        <select id="roletes">
+            <option value="5">Sim</option>
+            <option value="2">Não</option>
+        </select>
+
+        <label>Peças quebradas ou faltando?</label>
+        <select id="pecas">
+            <option value="0">Sim</option>
+            <option value="5">Não</option>
+        </select>
+
+        <label>Visualmente:</label>
+        <select id="visual">
+            <option value="5">Original</option>
+            <option value="3">Adesivada</option>
+            <option value="1">Desgastada</option>
+        </select>
+
+        <label>Tampa quebrada ou faltando?</label>
+        <select id="tampa">
+            <option value="0">Sim</option>
+            <option value="3">Não</option>
+        </select>
+
+        <label>Bulk de tinta:</label>
+        <select id="bulk">
+            <option value="5">Original</option>
+            <option value="3">Adaptado</option>
+            <option value="1">Improvisado</option>
+        </select>
+
+        <label>Tinta utilizada:</label>
+        <select id="tinta">
+            <option value="5">Original</option>
+            <option value="3">Compatível</option>
+            <option value="1">Genérica</option>
+        </select>
+
+        <label>Está em região praiana?</label>
     
-    <h2>2. Ano da Plotter</h2>
-    <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>Ano da Máquina</th>
-      <th>Pontuação</th>
-      <th>Observação Técnica</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Até 2 anos</td>
-      <td>10</td>
-      <td>Estado moderno, menor risco de manutenção</td>
-    </tr>
-    <tr>
-      <td>3 a 4 anos</td>
-      <td>8</td>
-      <td>Já pode exigir pequenos ajustes</td>
-    </tr>
-    <tr>
-      <td>5 a 6 anos</td>
-      <td>6</td>
-      <td>Manutenção preventiva começa a ser necessária</td>
-    </tr>
-    <tr>
-      <td>7 a 9 anos</td>
-      <td>4</td>
-      <td>Manutenções frequentes, atenção à correia</td>
-    </tr>
-    <tr>
-      <td>10 anos ou mais</td>
-      <td>2</td>
-      <td>Troca de correia quase certa, atenção geral</td>
-    </tr>
-  </tbody>
-</table>
-    
-    <h2>3. Manutenção Preventiva Esperada</h2>
-    <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>Peça Crítica</th>
-      <th>Quando é Exigida</th>
-      <th>Custo Médio (R$)</th>
-      <th>Impacto</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Guia de rolamentos</td>
-      <td>Após 5 anos</td>
-      <td>400 – 800</td>
-      <td>Reduz a nota geral da máquina</td>
-    </tr>
-    <tr>
-      <td>Correia de tração</td>
-      <td>Após 8 a 10 anos</td>
-      <td>1.000</td>
-      <td>Pode indicar máquina desregulada</td>
-    </tr>
-    <tr>
-      <td>Rolamento do carro/cabo flat</td>
-      <td>Após 6 anos</td>
-      <td>500 – 1.000</td>
-      <td>Problemas frequentes se não trocado</td>
-    </tr>
-  </tbody>
-</table>
+        <select id="praia">
+            <option value="0">Sim</option>
+            <option value="5">Não</option>
+        </select>
+
+        <button type="button" onclick="calcular()">Calcular preço sugerido</button>
+    </form>
+
+    <div id="resultado" class="resultado"></div>
+
+    <script>
+        const precos = {
+            "RF-640": 60000,
+            "RS-640": 46000,
+            "JV150-160": 60000
+        };
+
+        function calcular() {
+            const modelo = document.getElementById("modeloPlotter").value;
+            const precoMax = precos[modelo];
+            const estadoCabeca = parseInt(document.getElementById("estadoCabeca").value);
+            const manutencao = parseInt(document.getElementById("manutencao").value);
+            const praia = parseInt(document.getElementById("praia").value);
+
+            const anoSelecionado = document.getElementById("anoPlotter").value;
+            let notaAno = 0;
+            if (anoSelecionado === "Até 3 anos") {
+                notaAno = 10;
+            } else {
+                const ano = parseInt(anoSelecionado);
+                const idade = 2025 - ano;
+                if (idade <= 3) notaAno = 9;
+                else if (idade <= 5) notaAno = 7;
+                else if (idade <= 8) notaAno = 5;
+                else notaAno = 2;
+            }
+
+            
+            const motorScan = parseInt(document.getElementById("motorScan").value);
+            const cabecaFalhando = parseInt(document.getElementById("cabecaFalhando").value);
+            const bomba = parseInt(document.getElementById("bomba").value);
+            const roletes = parseInt(document.getElementById("roletes").value);
+            const pecas = parseInt(document.getElementById("pecas").value);
+            const visual = parseInt(document.getElementById("visual").value);
+            const tampa = parseInt(document.getElementById("tampa").value);
+            const bulk = parseInt(document.getElementById("bulk").value);
+            const tinta = parseInt(document.getElementById("tinta").value);
+
+            const pontuacao = estadoCabeca + manutencao + praia + notaAno +
+                              motorScan + cabecaFalhando + bomba + roletes + pecas +
+                              visual + tampa + bulk + tinta;
+            const pontuacaoMaxima = 10 + 5 + 5 + 10 + 5 + 3 + 5 + 5 + 5 + 5 + 3 + 5 + 5; // 81
+
+            const pontuacaoMaxima = 10 + 5 + 5 + 10;
+            const precoSugerido = precoMax * (pontuacao / pontuacaoMaxima);
+
+            document.getElementById("resultado").innerHTML =
+                "<strong>Pontuação:</strong> " + pontuacao + " de " + pontuacaoMaxima + "<br>" +
+                "<strong>Preço sugerido:</strong> R$ " + precoSugerido.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ",00";
+        }
+    </script>
 </body>
 </html>
